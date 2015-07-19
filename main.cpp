@@ -1,12 +1,12 @@
 // Copyright 2015 A.Bekkine
 
 int main() {
-    // [1] Initialize our task manager.
-    // [2] Add models with frequencies to task manager.
-    // [3] Add interfaces with frequencies to task manager.
-    // [4] Initialize everything.
-    // [5] Start running.
-    // [6] When (if) done, clean up and exit.
+    // TODO : Initialize our task manager.
+    // TODO : Add models with frequencies to task manager.
+    // TODO : Add interfaces with frequencies to task manager.
+    // TODO : Initialize everything.
+    // TODO : Start running.
+    // TODO : When (if) done, clean up and exit.
 
     return 0;
 }
