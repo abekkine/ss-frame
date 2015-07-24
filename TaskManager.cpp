@@ -10,16 +10,16 @@ TaskManager::~TaskManager() {
     // TODO(abekkine) : DTOR
 }
 
-void TaskManager::AddModel(Model* modelInstance, double freqInHz) {
+void TaskManager::AddModel(Model* modelInstance, double frequencyInHz) {
     // TODO(abekkine) : Add a model instance.
     modelInstance = modelInstance;
-    freqInHz = freqInHz;
+    frequencyInHz = frequencyInHz;
 }
 
-void TaskManager::AddInterface(Interface* interfaceInstance, double freqInHz) {
+void TaskManager::AddInterface(Interface* interfaceInstance, double frequencyInHz) {
     // TODO(abekkine) : Add an interface instance.
     interfaceInstance = interfaceInstance;
-    freqInHz = freqInHz;
+    frequencyInHz = frequencyInHz;
 }
 
 void TaskManager::Initialize() {

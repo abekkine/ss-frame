@@ -12,3 +12,9 @@ all: $(OBJS)
 
 clean:
 	$(RM) $(TARGET) *.o *~ core*
+
+cppcheck:
+	/usr/bin/cppcheck . --enable=all
+
+cpplint:
+	/usr/local/bin/cpplint.py --linelength=100 $(SRCS)
