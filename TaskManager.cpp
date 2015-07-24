@@ -11,15 +11,19 @@ TaskManager::~TaskManager() {
 }
 
 void TaskManager::AddModel(Model* modelInstance, double frequencyInHz) {
-    // TODO(abekkine) : Add a model instance.
-    modelInstance = modelInstance;
-    frequencyInHz = frequencyInHz;
+    // Add a model instance.
+    // We collect all frequencies to calculate a schedule plan.
+    frequencies_.push_back(frequencyInHz);
+    models_.push_back(modelInstance);
+    // TODO(abekkine) : Model should know it's frequency, too.
 }
 
 void TaskManager::AddInterface(Interface* interfaceInstance, double frequencyInHz) {
-    // TODO(abekkine) : Add an interface instance.
-    interfaceInstance = interfaceInstance;
-    frequencyInHz = frequencyInHz;
+    // Add an interface instance.
+    // We collect all frequencies to calculate a schedule plan.
+    frequencies_.push_back(frequencyInHz);
+    interfaces_.push_back(interfaceInstance);
+    // TODO(abekkine) : Interface should know it's frequency.
 }
 
 void TaskManager::Initialize() {
