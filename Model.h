@@ -3,7 +3,9 @@
 #ifndef MODEL_H_
 #define MODEL_H_
 
-class Model {
+#include "Task.h"
+
+class Model : public Task {
  public:
     Model() {}
     ~Model() {}

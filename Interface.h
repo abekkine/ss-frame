@@ -3,7 +3,9 @@
 #ifndef INTERFACE_H_
 #define INTERFACE_H_
 
-class Interface {
+#include "Task.h"
+
+class Interface : public Task {
  public:
     Interface() {}
     ~Interface() {}
