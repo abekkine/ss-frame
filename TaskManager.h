@@ -17,11 +17,15 @@ class TaskManager {
     void Initialize();
     void Execute();
 
- public:
+ private:
     void Setup();
     void Cleanup();
     void CleanupModels();
     void CleanupInterfaces();
+    void CalculateSchedulePlan();
+    void SetupTimer();
+    void SetupModels();
+    void SetupInterfaces();
 
  private:
     std::vector< double > frequencies_;

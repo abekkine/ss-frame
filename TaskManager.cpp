@@ -61,7 +61,40 @@ void TaskManager::AddInterface(Interface* interfaceInstance, double frequencyInH
 }
 
 void TaskManager::Initialize() {
-    // TODO(abekkine) : Initialize task manager.
+    // First, calculate scheduling plan for given
+    // models and interfaces.
+    CalculateSchedulePlan();
+
+    // Setup timing resolution for models and interfaces.
+    // TODO(abekkine) : Following method will be called with minimum scheduling
+    //                : period from scheduling plan to setup task scheduling.
+    Task::TimeResolution(0.0);
+
+    // Prepare timer for scheduling.
+    SetupTimer();
+
+    // Prepare interfaces for scheduling.
+    SetupInterfaces();
+
+    // Prepare models for scheduling.
+    SetupModels();
+}
+
+void TaskManager::CalculateSchedulePlan() {
+    // TODO(abekkine) : Calculate schedule plan for
+    //                : given model and interface frequencies
+}
+
+void TaskManager::SetupTimer() {
+    // TODO(abekkine) : Setup scheduling timer.
+}
+
+void TaskManager::SetupInterfaces() {
+    // TODO(abekkine) : Setup & initialize scheduling for interfaces.
+}
+
+void TaskManager::SetupModels() {
+    // TODO(abekkine) : Setup & initialize scheduling for models.
 }
 
 void TaskManager::Execute() {
