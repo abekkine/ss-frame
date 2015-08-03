@@ -1,7 +1,13 @@
+BUILD := debug
+
+cflags.common = -Wall -Wextra -Werror -Wfatal-errors
+cflags.debug = -g -O0
+cflags.coverage = -g -O0 -coverage
+
 TARGET=main.bin
 SRCS=$(wildcard *.cpp)
 OBJS=$(SRCS:%.cpp=%.o)
-FLAGS=-Wall -Wextra -Werror -Wfatal-errors
+FLAGS=${cflags.${BUILD}} ${cflags.common}
 CCLIBS=
 
 all: $(OBJS)
@@ -11,10 +17,15 @@ all: $(OBJS)
 	$(CXX) $(FLAGS) -c -o $*.o $<
 
 clean:
-	$(RM) $(TARGET) *.o *~ core*
+	$(RM) -rf report $(TARGET) *.o *~ core*
 
 cppcheck:
 	/usr/bin/cppcheck . --enable=all
 
 cpplint:
 	/usr/local/bin/cpplint.py --linelength=100 $(SRCS)
+
+coverage:
+	./$(TARGET)
+	lcov -o report.info -c -d .
+	genhtml -o report --no-branch-coverage report.info
