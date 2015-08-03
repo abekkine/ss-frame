@@ -3,11 +3,43 @@
 #include "TaskManager.h"
 
 TaskManager::TaskManager() {
-    // TODO(abekkine) : CTOR
+    Setup();
 }
 
 TaskManager::~TaskManager() {
-    // TODO(abekkine) : DTOR
+    Cleanup();
+}
+
+void TaskManager::Setup() {
+    frequencies_.clear();
+    models_.clear();
+    interfaces_.clear();
+
+    // TODO(abekkine) : More initialization...
+}
+
+void TaskManager::Cleanup() {
+    // Some cleanup
+    CleanupModels();
+    CleanupInterfaces();
+}
+
+void TaskManager::CleanupModels() {
+    // Clean up models.
+    while (!models_.empty()) {
+        Model* modelToDelete = models_.back();
+        models_.pop_back();
+        delete modelToDelete;
+    }
+}
+
+void TaskManager::CleanupInterfaces() {
+    // Clean up interfaces.
+    while (!interfaces_.empty()) {
+        Interface* interfaceToDelete = interfaces_.back();
+        interfaces_.pop_back();
+        delete interfaceToDelete;
+    }
 }
 
 void TaskManager::AddModel(Model* modelInstance, double frequencyInHz) {

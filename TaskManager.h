@@ -17,6 +17,12 @@ class TaskManager {
     void Initialize();
     void Execute();
 
+ public:
+    void Setup();
+    void Cleanup();
+    void CleanupModels();
+    void CleanupInterfaces();
+
  private:
     std::vector< double > frequencies_;
     std::vector< Model* > models_;
