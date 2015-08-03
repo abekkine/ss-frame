@@ -33,3 +33,6 @@
 *.gcno
 report.info
 report/
+
+# Temporary files
+.*.swp
