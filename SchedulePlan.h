@@ -3,6 +3,8 @@
 #ifndef SCHEDULE_PLAN_
 #define SCHEDULE_PLAN_
 
+#include <vector>
+
 class SchedulePlan {
  public:
     SchedulePlan(int maximum_frequency);

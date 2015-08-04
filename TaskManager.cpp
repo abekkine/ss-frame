@@ -1,5 +1,7 @@
 // Copyright 2015 A.Bekkine
 
+#include <vector>
+
 #include "TaskManager.h"
 
 TaskManager::TaskManager() {
@@ -12,6 +14,7 @@ TaskManager::~TaskManager() {
 
 void TaskManager::Setup() {
     plan_ = 0;
+    timer_ = 0;
 
     frequencies_.clear();
     models_.clear();
@@ -98,13 +101,17 @@ void TaskManager::CalculateSchedulePlan() {
 }
 
 void TaskManager::SetupTimer() {
-    // TODO(abekkine) : Setup scheduling timer.
+    // Setup scheduling timer.
+    timer_ = new Timer();
+    timer_->SetHandler(TaskManager::Handler);
+    timer_->SetMinimumPeriod(plan_->minimum_period);
+    timer_->Initialize();
 }
 
 void TaskManager::SetupInterfaces() {
     // Setup & initialize scheduling for interfaces.
     std::vector< Interface* >::iterator iInterface;
-    for(iInterface = interfaces_.begin(); iInterface != interfaces_.end(); ++iInterface) {
+    for (iInterface = interfaces_.begin(); iInterface != interfaces_.end(); ++iInterface) {
         (*iInterface)->Initialize();
     }
 }
@@ -112,7 +119,7 @@ void TaskManager::SetupInterfaces() {
 void TaskManager::SetupModels() {
     // Setup & initialize scheduling for models.
     std::vector< Model* >::iterator iModel;
-    for(iModel = models_.begin(); iModel != models_.end(); ++iModel) {
+    for (iModel = models_.begin(); iModel != models_.end(); ++iModel) {
         (*iModel)->Initialize();
     }
 }
@@ -121,3 +128,6 @@ void TaskManager::Execute() {
     // TODO(abekkine) : Start scheduling.
 }
 
+void TaskManager::Handler() {
+    // TODO(abekkine) : Timer handler function for TaskManager.
+}

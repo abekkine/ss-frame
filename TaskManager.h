@@ -8,6 +8,7 @@
 #include "Model.h"
 #include "Interface.h"
 #include "SchedulePlan.h"
+#include "Timer.h"
 
 class TaskManager {
  public:
@@ -27,12 +28,14 @@ class TaskManager {
     void SetupTimer();
     void SetupModels();
     void SetupInterfaces();
+    static void Handler();
 
  private:
     std::vector< double > frequencies_;
     std::vector< Model* > models_;
     std::vector< Interface* > interfaces_;
     SchedulePlan* plan_;
+    Timer* timer_;
 };
 
 #endif  // TASKMANAGER_H_
