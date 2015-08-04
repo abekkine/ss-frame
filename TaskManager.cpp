@@ -11,6 +11,8 @@ TaskManager::~TaskManager() {
 }
 
 void TaskManager::Setup() {
+    plan_ = 0;
+
     frequencies_.clear();
     models_.clear();
     interfaces_.clear();
@@ -22,6 +24,10 @@ void TaskManager::Cleanup() {
     // Some cleanup
     CleanupModels();
     CleanupInterfaces();
+
+    if (plan_ != 0) {
+        delete plan_;
+    }
 }
 
 void TaskManager::CleanupModels() {
@@ -81,8 +87,16 @@ void TaskManager::Initialize() {
 }
 
 void TaskManager::CalculateSchedulePlan() {
-    // TODO(abekkine) : Calculate schedule plan for
-    //                : given model and interface frequencies
+    // TODO(abekkine) : It would be better to define maximum
+    //                : frequency somewhere else.
+    const int MaxFrequency = 200;
+
+    // Get plan object for given maximum frequency.
+    plan_ = new SchedulePlan(MaxFrequency);
+
+    // Calculate schedule plan for given "model and
+    // interface" frequencies.
+    plan_->Calculate(frequencies_);
 }
 
 void TaskManager::SetupTimer() {
@@ -100,3 +114,4 @@ void TaskManager::SetupModels() {
 void TaskManager::Execute() {
     // TODO(abekkine) : Start scheduling.
 }
+

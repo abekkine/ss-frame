@@ -7,6 +7,7 @@
 
 #include "Model.h"
 #include "Interface.h"
+#include "SchedulePlan.h"
 
 class TaskManager {
  public:
@@ -31,6 +32,7 @@ class TaskManager {
     std::vector< double > frequencies_;
     std::vector< Model* > models_;
     std::vector< Interface* > interfaces_;
+    SchedulePlan* plan_;
 };
 
 #endif  // TASKMANAGER_H_
