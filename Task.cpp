@@ -15,3 +15,7 @@ void Task::Frequency(double frequency) {
 void Task::Initialize() {
     // TODO(abekkine) : Will be defined in sub-classes later.
 }
+
+void Task::Step() {
+    // TODO(abekkine) : Will be defined in sub-classes later.
+}

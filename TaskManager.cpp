@@ -85,8 +85,7 @@ void TaskManager::Initialize() {
     CalculateSchedulePlan();
 
     // Setup timing resolution for models and interfaces.
-    // TODO(abekkine) : Following method will be called with minimum scheduling
-    //                : period from scheduling plan to setup task scheduling.
+    // TODO(abekkine) : Following method will be called with minimum scheduling period from scheduling plan to setup task scheduling.
     Task::TimeResolution(0.0);
 
     // Prepare timer for scheduling.
@@ -151,11 +150,19 @@ void TaskManager::StartupTimer() {
 }
 
 void TaskManager::ScheduleModels() {
-    // TODO(abekkine) : Schedule model instances.
+    // Schedule model instances.
+    std::vector< Model* >::iterator iModel;
+    for (iModel = models_.begin(); iModel != models_.end(); ++iModel) {
+        (*iModel)->Step();
+    }
 }
 
 void TaskManager::ScheduleInterfaces() {
-    // TODO(abekkine) : Schedule interface instances.
+    // Schedule interface instances.
+    std::vector< Interface* >::iterator iInterface;
+    for (iInterface = interfaces_.begin(); iInterface != interfaces_.end(); ++iInterface) {
+        (*iInterface)->Step();
+    }
 }
 
 void TaskManager::UpdateFrameCounter() {
