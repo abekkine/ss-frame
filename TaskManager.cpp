@@ -1,5 +1,7 @@
 // Copyright 2015 A.Bekkine
 
+#include <unistd.h>
+
 #include <vector>
 
 #include "TaskManager.h"
@@ -135,9 +137,34 @@ void TaskManager::SetupModels() {
 }
 
 void TaskManager::Execute() {
-    // TODO(abekkine) : Start scheduling.
+    // Start scheduling.
+    StartupTimer();
+
+    while (true) {
+        sleep(5);
+    }
+}
+
+void TaskManager::StartupTimer() {
+    // TODO(abekkine) : Start up scheduling timer.
+}
+
+void TaskManager::ScheduleModels() {
+    // TODO(abekkine) : Schedule model instances.
+}
+
+void TaskManager::ScheduleInterfaces() {
+    // TODO(abekkine) : Schedule interface instances.
+}
+
+void TaskManager::UpdateFrameCounter() {
+    // TODO(abekkine) : Update scheduler frame counter.
 }
 
 void TaskManager::Handler() {
-    // TODO(abekkine) : Timer handler function for TaskManager.
+    // Timer handler function for TaskManager.
+    // Singleton access needed since this is a static function.
+    TaskManager::Instance()->ScheduleModels();
+    TaskManager::Instance()->ScheduleInterfaces();
+    TaskManager::Instance()->UpdateFrameCounter();
 }

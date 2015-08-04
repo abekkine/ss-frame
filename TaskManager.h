@@ -30,8 +30,12 @@ class TaskManager {
     void CleanupInterfaces();
     void CalculateSchedulePlan();
     void SetupTimer();
+    void StartupTimer();
     void SetupModels();
     void SetupInterfaces();
+    void ScheduleInterfaces();
+    void ScheduleModels();
+    void UpdateFrameCounter();
     static void Handler();
 
  private:
