@@ -12,12 +12,16 @@
 
 class TaskManager {
  public:
-    TaskManager();
+    static TaskManager* Instance();
     ~TaskManager();
     void AddModel(Model* modelInstance, double freqInHz);
     void AddInterface(Interface* interfaceInstance, double freqInHz);
     void Initialize();
     void Execute();
+
+ private:
+    static TaskManager* instance_;
+    TaskManager();
 
  private:
     void Setup();

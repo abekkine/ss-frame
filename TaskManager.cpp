@@ -4,6 +4,16 @@
 
 #include "TaskManager.h"
 
+TaskManager* TaskManager::instance_ = 0;
+
+TaskManager* TaskManager::Instance() {
+    if (instance_ == 0) {
+        instance_ = new TaskManager();
+    }
+
+    return instance_;
+}
+
 TaskManager::TaskManager() {
     Setup();
 }

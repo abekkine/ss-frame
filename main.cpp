@@ -6,7 +6,7 @@
 
 int main() {
     // Initialize our task manager.
-    TaskManager* taskManager = new TaskManager();
+    TaskManager* taskManager = TaskManager::Instance();
 
     // Add -multiple- models to task manager.
     ModelManager::AddModels(taskManager);
