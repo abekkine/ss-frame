@@ -26,3 +26,7 @@ void Timer::Initialize() {
     // TODO(abekkine) : Initialization; setup original signal handler, etc.
 }
 
+void Timer::Start() {
+    // TODO(abekkine) : Start timer.
+}
+

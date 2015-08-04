@@ -10,6 +10,7 @@ class Timer {
     void SetHandler(void (*handler)());
     void SetMinimumPeriod(double minimum_period);
     void Initialize();
+    void Start();
 
  private:
     double minimum_period_;

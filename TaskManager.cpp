@@ -146,7 +146,8 @@ void TaskManager::Execute() {
 }
 
 void TaskManager::StartupTimer() {
-    // TODO(abekkine) : Start up scheduling timer.
+    // Start up scheduling timer.
+    timer_->Start();
 }
 
 void TaskManager::ScheduleModels() {
