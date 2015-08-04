@@ -16,8 +16,6 @@ void TaskManager::Setup() {
     frequencies_.clear();
     models_.clear();
     interfaces_.clear();
-
-    // TODO(abekkine) : More initialization...
 }
 
 void TaskManager::Cleanup() {
@@ -104,11 +102,19 @@ void TaskManager::SetupTimer() {
 }
 
 void TaskManager::SetupInterfaces() {
-    // TODO(abekkine) : Setup & initialize scheduling for interfaces.
+    // Setup & initialize scheduling for interfaces.
+    std::vector< Interface* >::iterator iInterface;
+    for(iInterface = interfaces_.begin(); iInterface != interfaces_.end(); ++iInterface) {
+        (*iInterface)->Initialize();
+    }
 }
 
 void TaskManager::SetupModels() {
-    // TODO(abekkine) : Setup & initialize scheduling for models.
+    // Setup & initialize scheduling for models.
+    std::vector< Model* >::iterator iModel;
+    for(iModel = models_.begin(); iModel != models_.end(); ++iModel) {
+        (*iModel)->Initialize();
+    }
 }
 
 void TaskManager::Execute() {

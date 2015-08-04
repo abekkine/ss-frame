@@ -6,6 +6,8 @@
 class Task {
  public:
     void Frequency(double frequency);
+    // TODO(abekkine) : Will be made virtual later.
+    void Initialize();
 
  public:
     static void TimeResolution(double resolution);

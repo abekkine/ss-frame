@@ -11,3 +11,7 @@ void Task::TimeResolution(double resolution) {
 void Task::Frequency(double frequency) {
     frequency_ = frequency;
 }
+
+void Task::Initialize() {
+    // TODO(abekkine) : Will be defined in sub-classes later.
+}
