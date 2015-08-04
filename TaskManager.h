@@ -44,6 +44,7 @@ class TaskManager {
     std::vector< Interface* > interfaces_;
     SchedulePlan* plan_;
     Timer* timer_;
+    int frame_counter_;
 };
 
 #endif  // TASKMANAGER_H_

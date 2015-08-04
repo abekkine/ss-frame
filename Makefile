@@ -8,7 +8,7 @@ TARGET=main.bin
 SRCS=$(wildcard *.cpp)
 OBJS=$(SRCS:%.cpp=%.o)
 FLAGS=${cflags.${BUILD}} ${cflags.common}
-CCLIBS=
+CCLIBS=-lrt
 
 all: $(OBJS)
 	$(CXX) $(FLAGS) -o $(TARGET) $(OBJS) $(CCLIBS)

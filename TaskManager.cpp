@@ -27,6 +27,7 @@ TaskManager::~TaskManager() {
 void TaskManager::Setup() {
     plan_ = 0;
     timer_ = 0;
+    frame_counter_ = 0;
 
     frequencies_.clear();
     models_.clear();
@@ -85,8 +86,9 @@ void TaskManager::Initialize() {
     CalculateSchedulePlan();
 
     // Setup timing resolution for models and interfaces.
-    // TODO(abekkine) : Following method will be called with minimum scheduling period from scheduling plan to setup task scheduling.
-    Task::TimeResolution(0.0);
+    // Following method will be called with minimum scheduling
+    // period from scheduling plan to setup task scheduling.
+    Task::TimeResolution(plan_->minimum_period);
 
     // Prepare timer for scheduling.
     SetupTimer();
@@ -99,8 +101,10 @@ void TaskManager::Initialize() {
 }
 
 void TaskManager::CalculateSchedulePlan() {
-    // TODO(abekkine) : It would be better to define maximum
+    // TODO(abekkine) : It would be good to define maximum
     //                : frequency somewhere else.
+    //                : Even better to have this value
+    //                : automatically calculated.
     const int MaxFrequency = 200;
 
     // Get plan object for given maximum frequency.
@@ -113,7 +117,7 @@ void TaskManager::CalculateSchedulePlan() {
 
 void TaskManager::SetupTimer() {
     // Setup scheduling timer.
-    timer_ = new Timer();
+    timer_ = Timer::Instance();
     timer_->SetHandler(TaskManager::Handler);
     timer_->SetMinimumPeriod(plan_->minimum_period);
     timer_->Initialize();
@@ -166,10 +170,14 @@ void TaskManager::ScheduleInterfaces() {
 }
 
 void TaskManager::UpdateFrameCounter() {
-    // TODO(abekkine) : Update scheduler frame counter.
+    // Update scheduler frame counter.
+    frame_counter_++;
+    frame_counter_ %= plan_->maximum_ticks;
+    printf("TaskManager::UpdateFrameCounter() --> %d\n", frame_counter_);
 }
 
 void TaskManager::Handler() {
+    puts("TaskManager::Handler()");
     // Timer handler function for TaskManager.
     // Singleton access needed since this is a static function.
     TaskManager::Instance()->ScheduleModels();

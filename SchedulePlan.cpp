@@ -16,4 +16,8 @@ SchedulePlan::~SchedulePlan() {
 void SchedulePlan::Calculate(std::vector< double > & frequencies) {
     // TODO(abekkine) : Calculate plan.
     frequencies.pop_back();
+
+    // DEBUG
+    maximum_ticks = 10;
+    minimum_period = 0.05;
 }

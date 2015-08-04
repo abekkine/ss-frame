@@ -3,17 +3,35 @@
 #ifndef TIMER_H_
 #define TIMER_H_
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <time.h>
+
 class Timer {
  public:
-    Timer();
+    static Timer* Instance();
     ~Timer();
     void SetHandler(void (*handler)());
     void SetMinimumPeriod(double minimum_period);
     void Initialize();
     void Start();
+    void CallManagerHandler();
 
  private:
+    static Timer* instance_;
+    Timer();
+    static void SignalHandler(int signal, siginfo_t *info, void* context);
+
+ private:
+    void (*manager_handler_)();
     double minimum_period_;
+    timer_t timer_id_;
+    int timer_signal_;
+    struct sigevent sig_event_;
+    struct itimerspec timer_spec_;
+    sigset_t mask_;
+    struct sigaction sig_action_;
 };
 
 #endif  // TIMER_H_
