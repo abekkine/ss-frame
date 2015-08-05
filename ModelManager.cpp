@@ -1,5 +1,3 @@
-#include "ModelManager.h"
-
 // Copyright 2015 A.Bekkine
 
 #include "ModelManager.h"
