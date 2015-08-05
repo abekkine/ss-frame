@@ -5,11 +5,13 @@
 
 class Task {
  public:
+    virtual void Step() = 0;
+    virtual void Initialize() = 0;
+
+ public:
     void Frequency(double frequency);
-    // TODO(abekkine) : Will be made virtual later.
-    void Initialize();
-    // TODO(abekkine) : Will be made virtual later.
-    void Step();
+    bool OnTime();
+    void SetupScheduling();
 
  public:
     static void TimeResolution(double resolution);
@@ -17,6 +19,8 @@ class Task {
  private:
     double frequency_;
     static double resolution_;
+    int task_counter_;
+    int frame_modus_;
 };
 
 #endif  // TASK_H

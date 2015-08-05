@@ -7,8 +7,19 @@
 
 class Interface : public Task {
  public:
-    Interface() {}
-    ~Interface() {}
+    virtual void Update() = 0;
+    virtual void Send() = 0;
+    virtual void Receive() = 0;
+
+ public:
+    Interface();
+    virtual ~Interface() {}
+
+ public:
+    void Step();
+
+ private:
+    char direction_;
 };
 
 #endif  // INTERFACE_H_

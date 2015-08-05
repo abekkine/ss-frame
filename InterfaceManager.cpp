@@ -2,8 +2,8 @@
 
 #include "InterfaceManager.h"
 
-#include "Interface.h"
+#include "interfaces/BetaInterface.h"
 
 void InterfaceManager::AddInterfaces(TaskManager* taskManager) {
-    taskManager->AddInterface( new Interface(), 20.0 );
+    taskManager->AddInterface( new BetaInterface(), 20.0 );
 }

@@ -36,6 +36,7 @@ class TaskManager {
     void ScheduleInterfaces();
     void ScheduleModels();
     void UpdateFrameCounter();
+    bool Quit();
     static void Handler();
 
  private:

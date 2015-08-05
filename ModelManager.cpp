@@ -2,8 +2,9 @@
 
 #include "ModelManager.h"
 
-#include "Model.h"
+#include "models/AlphaModel.h"
 
 void ModelManager::AddModels(TaskManager* taskManager) {
-    taskManager->AddModel( new Model(), 25.0 );
+    taskManager->AddModel( new AlphaModel(), 25.0 );
 }
+

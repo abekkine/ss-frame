@@ -42,6 +42,10 @@ void TaskManager::Cleanup() {
     if (plan_ != 0) {
         delete plan_;
     }
+
+    if (timer_ != 0) {
+        delete timer_;
+    }
 }
 
 void TaskManager::CleanupModels() {
@@ -49,6 +53,8 @@ void TaskManager::CleanupModels() {
     while (!models_.empty()) {
         Model* modelToDelete = models_.back();
         models_.pop_back();
+        // DEBUG
+        puts("deleting model...");
         delete modelToDelete;
     }
 }
@@ -58,6 +64,8 @@ void TaskManager::CleanupInterfaces() {
     while (!interfaces_.empty()) {
         Interface* interfaceToDelete = interfaces_.back();
         interfaces_.pop_back();
+        // DEBUG
+        puts("deleting interface...");
         delete interfaceToDelete;
     }
 }
@@ -139,11 +147,21 @@ void TaskManager::SetupModels() {
     }
 }
 
+bool TaskManager::Quit() {
+    static int quit_counter = 10;
+    quit_counter--;
+    if (quit_counter == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 void TaskManager::Execute() {
     // Start scheduling.
     StartupTimer();
 
-    while (true) {
+    while (!TaskManager::Quit()) {
         sleep(5);
     }
 }
@@ -173,11 +191,9 @@ void TaskManager::UpdateFrameCounter() {
     // Update scheduler frame counter.
     frame_counter_++;
     frame_counter_ %= plan_->maximum_ticks;
-    printf("TaskManager::UpdateFrameCounter() --> %d\n", frame_counter_);
 }
 
 void TaskManager::Handler() {
-    puts("TaskManager::Handler()");
     // Timer handler function for TaskManager.
     // Singleton access needed since this is a static function.
     TaskManager::Instance()->ScheduleModels();

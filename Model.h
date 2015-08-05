@@ -7,8 +7,11 @@
 
 class Model : public Task {
  public:
-    Model() {}
-    ~Model() {}
+    virtual void ModelStep() = 0;
+    virtual ~Model() {}
+
+ public:
+    void Step();
 };
 
 #endif  // MODEL_H_

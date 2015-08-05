@@ -19,6 +19,7 @@ Timer::Timer() {
 }
 
 Timer::~Timer() {
+    timer_delete(timer_id_);
 }
 
 void Timer::SetHandler(void (*handler)()) {
@@ -36,7 +37,6 @@ void Timer::SetMinimumPeriod(double minimum_period) {
 }
 
 void Timer::Initialize() {
-    puts("Timer::Initialize()");
     // Establish handler for timer signal.
     sig_action_.sa_flags = SA_SIGINFO;
     sig_action_.sa_sigaction = Timer::SignalHandler;
@@ -94,8 +94,6 @@ void Timer::SignalHandler(int signal, siginfo_t *info, void* context) {
     timer_t *p_timer_id;
     int overrun_count;
 
-    puts("Timer::SignalHandler()");
-
     Timer::Instance()->CallManagerHandler();
 
     p_timer_id = static_cast<timer_t *>(info->si_value.sival_ptr);
@@ -105,7 +103,7 @@ void Timer::SignalHandler(int signal, siginfo_t *info, void* context) {
         printf("%s:%d\n", __FILE__, __LINE__);
         exit(1);
     } else {
-        if (overrun_count >0) {
+        if (overrun_count > 0) {
             printf("overrun_count(%d)\n", overrun_count);
         }
     }

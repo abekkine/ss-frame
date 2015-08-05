@@ -5,7 +5,7 @@ cflags.debug = -g -O0
 cflags.coverage = -g -O0 -coverage
 
 TARGET=main.bin
-SRCS=$(wildcard *.cpp)
+SRCS=$(wildcard *.cpp) $(wildcard models/*.cpp) $(wildcard interfaces/*.cpp)
 OBJS=$(SRCS:%.cpp=%.o)
 FLAGS=${cflags.${BUILD}} ${cflags.common}
 CCLIBS=-lrt
