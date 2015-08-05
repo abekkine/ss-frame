@@ -16,16 +16,13 @@ Timer::Timer() {
     minimum_period_ = 0.0;
     manager_handler_ = 0;
     timer_signal_ = SIGRTMIN;
-
-    // TODO(abekkine) : CTOR
 }
 
 Timer::~Timer() {
-    // TODO(abekkine) : DTOR
 }
 
 void Timer::SetHandler(void (*handler)()) {
-    // TODO(abekkine) : Set handler callback from TaskManager.
+    // Set handler callback from TaskManager.
     manager_handler_ = handler;
 }
 

@@ -11,6 +11,12 @@ class SchedulePlan {
     ~SchedulePlan();
     void Calculate(std::vector<double> & frequencies);
 
+ private:
+    int GCD(const std::vector< int >& numbers);
+    int GCD(const int a, const int b);
+    int LCM(const std::vector< int >& numbers);
+    int LCM(const int a, const int b);
+
  public:
     // Calculated schedule plan parameters.
     int maximum_ticks;
