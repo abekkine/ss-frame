@@ -17,7 +17,7 @@ all: $(OBJS)
 	$(CXX) $(FLAGS) -c -o $*.o $<
 
 clean:
-	$(RM) -rf report $(TARGET) *.o *~ core* *.gcda *.gcno report.info
+	$(RM) -rf report $(TARGET) *.o *~ core* *.gcda *.gcno report.info vgcore.*
 
 cppcheck:
 	/usr/bin/cppcheck . --enable=all
