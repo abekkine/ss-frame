@@ -6,6 +6,12 @@
 
 double Task::resolution_ = 0.0;
 
+Task::Task() {
+    frequency_ = 0.0;
+    task_counter_ = 0;
+    frame_modus_ = 0;
+}
+
 void Task::TimeResolution(double resolution) {
     resolution_ = resolution;
 }

@@ -148,7 +148,7 @@ void TaskManager::SetupModels() {
 }
 
 bool TaskManager::Quit() {
-    static int quit_counter = 10;
+    static int quit_counter = 100;
     quit_counter--;
     if (quit_counter == 0) {
         return true;

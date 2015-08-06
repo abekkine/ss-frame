@@ -16,6 +16,7 @@ Timer::Timer() {
     minimum_period_ = 0.0;
     manager_handler_ = 0;
     timer_signal_ = SIGRTMIN;
+    last_context_ = 0;
 }
 
 Timer::~Timer() {
@@ -90,11 +91,10 @@ void Timer::Start() {
     }
 }
 
-void Timer::SignalHandler(int signal, siginfo_t *info, void* context) {
+void Timer::HandleOverrun(siginfo_t *info) {
+    // Process and log overruns.
     timer_t *p_timer_id;
     int overrun_count;
-
-    Timer::Instance()->CallManagerHandler();
 
     p_timer_id = static_cast<timer_t *>(info->si_value.sival_ptr);
     overrun_count = timer_getoverrun(*p_timer_id);
@@ -107,8 +107,28 @@ void Timer::SignalHandler(int signal, siginfo_t *info, void* context) {
             printf("overrun_count(%d)\n", overrun_count);
         }
     }
+}
 
-    // TODO(abekkine) : Timer termination directive?
-    signal = signal;
-    context = context;
+void Timer::HandleContext(void* context) {
+    if (last_context_ != 0) {
+        if (context != last_context_) {
+            puts("Signal context updated!");
+            last_context_ = context;
+        }
+    } else {
+        last_context_ = context;
+    }
+}
+
+void Timer::SignalHandler(int signal, siginfo_t *info, void* context) {
+    if (signal != SIGRTMIN) {
+        // Process only specified signal.
+        return;
+    }
+
+    Timer::Instance()->CallManagerHandler();
+
+    Timer::Instance()->HandleOverrun(info);
+
+    Timer::Instance()->HandleContext(context);
 }

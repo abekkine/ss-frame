@@ -9,6 +9,7 @@ class Task {
     virtual void Initialize() = 0;
 
  public:
+    Task();
     void Frequency(double frequency);
     bool OnTime();
     void SetupScheduling();

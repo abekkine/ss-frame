@@ -78,6 +78,7 @@ void SchedulePlan::Calculate(std::vector< double > & frequencies) {
     major_frame = LCM(ticks);
     minor_frame = GCD(ticks);
 
+    // TODO(abekkine) : What if a proper plan can not be calculated?
     maximum_ticks = major_frame / minor_frame;
     minimum_period = minimum_allowed_period * minor_frame;
 }

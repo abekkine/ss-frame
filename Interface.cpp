@@ -1,7 +1,5 @@
 // Copyright 2015 A.Bekkine
 
-#include <stdio.h>
-
 #include "Interface.h"
 
 Interface::Interface() {

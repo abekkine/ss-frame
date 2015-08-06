@@ -21,7 +21,9 @@ class Timer {
  private:
     static Timer* instance_;
     Timer();
-    static void SignalHandler(int signal, siginfo_t *info, void* context);
+    void HandleOverrun(siginfo_t* info);
+    void HandleContext(void* context);
+    static void SignalHandler(int signal, siginfo_t* info, void* context);
 
  private:
     void (*manager_handler_)();
@@ -32,6 +34,7 @@ class Timer {
     struct itimerspec timer_spec_;
     sigset_t mask_;
     struct sigaction sig_action_;
+    void* last_context_;
 };
 
 #endif  // TIMER_H_
