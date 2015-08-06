@@ -28,7 +28,7 @@ cpplint:
 coverage:
 	./$(TARGET)
 	lcov -o report.info -c -d .
-	genhtml -o report --no-branch-coverage report.info
+	genhtml -o report --branch-coverage report.info
 
 memcheck:
 	valgrind --leak-check=full --track-origins=yes --show-reachable=yes --num-callers=20 --error-limit=no ./$(TARGET)
